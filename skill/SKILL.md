@@ -11,12 +11,6 @@ metadata:
     requires:
       env: [HF_TOKEN]
       bins: [hf]
-    install:
-      - id: brew
-        kind: brew
-        formula: hf
-        bins: [hf]
-        label: "Install Hugging Face CLI (brew)"
 ---
 
 # Hugging Face CLI
@@ -37,21 +31,13 @@ Hugging Face (https://huggingface.co) is the leading platform for sharing and co
 
 ## Installation
 
-Check if `hf` is available by running `hf version`.
+Check if `hf` is available by running `hf version`. If not installed:
 
-If `hf` is NOT installed, install it using the standalone installer:
-
-- **macOS / Linux:**
 ```bash
 curl -LsSf https://hf.co/cli/install.sh | bash
 ```
 
-- **Windows (PowerShell):**
-```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://hf.co/cli/install.ps1 | iex"
-```
-
-After installation, run `hf version` to verify. If the command is not found, tell the user to restart their terminal (the installer updates PATH in shell profile, which requires a new shell session to take effect) and try again.
+After installation, run `hf version` to verify. If the command is not found, tell the user to restart their terminal and try again.
 
 ## Authentication
 
