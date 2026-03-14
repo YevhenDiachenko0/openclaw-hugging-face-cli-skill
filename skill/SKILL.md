@@ -41,15 +41,7 @@ Requires [uv](https://docs.astral.sh/uv/getting-started/installation/). Run comm
 uvx hf version
 ```
 
-### Option 4: Standalone installer
-
-```bash
-# macOS/Linux
-curl -LsSf https://hf.co/cli/install.sh | bash
-
-# Windows (PowerShell)
-powershell -ExecutionPolicy ByPass -c "irm https://hf.co/cli/install.ps1 | iex"
-```
+If the options above do not work, follow the [official installation guide](https://huggingface.co/docs/huggingface_hub/guides/cli#getting-started).
 
 After installation, run `hf version` to verify. If the command is not found, run `source ~/.bashrc` (or `source ~/.zshrc` for zsh) to reload the PATH, then try again.
 
