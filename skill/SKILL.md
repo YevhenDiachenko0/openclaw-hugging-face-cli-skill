@@ -25,7 +25,7 @@ Check if `hf` is available by running `hf version`. If not installed:
 curl -LsSf https://hf.co/cli/install.sh | bash
 ```
 
-After installation, run `hf version` to verify. If the command is not found, tell the user to restart their terminal and try again.
+After installation, run `hf version` to verify. If the command is not found, run `source ~/.bashrc` (or `source ~/.zshrc` for zsh) to reload the PATH, then try again.
 
 ## Authentication
 
