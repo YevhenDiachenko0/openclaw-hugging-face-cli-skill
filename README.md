@@ -1,6 +1,6 @@
 # Hugging Face CLI — OpenClaw Skill
 
-OpenClaw skill that teaches agents to interact with the [Hugging Face Hub](https://huggingface.co) via the official [`hf` CLI](https://huggingface.co/docs/huggingface_hub/guides/cli).
+OpenClaw skill that teaches agents to interact with the [Hugging Face Hub](https://huggingface.co) via the official [hf CLI](https://huggingface.co/docs/huggingface_hub/guides/cli).
 
 Install via:
 
