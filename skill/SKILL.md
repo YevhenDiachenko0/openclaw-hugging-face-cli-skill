@@ -92,6 +92,7 @@ hf auth whoami
 | Upload large folder | `hf upload-large-folder <repo_id> <local_path>` |
 | Create a repo | `hf repos create <name> [--repo-type model\|dataset\|space] [--private]` |
 | Delete a repo | `hf repos delete <repo_id>` |
+| Delete files from repo | `hf repos delete-files <repo_id> <path>...` |
 | Duplicate a repo | `hf repos duplicate <repo_id> [--type model\|dataset\|space]` |
 | Repo settings | `hf repos settings <repo_id> [--private\|--public]` |
 | Manage branches | `hf repos branch create\|delete <repo_id> <branch>` |
@@ -119,10 +120,14 @@ hf auth whoami
 | List endpoints | `hf endpoints ls` |
 | Endpoint info | `hf endpoints describe <name>` |
 | Pause/resume endpoint | `hf endpoints pause\|resume <name>` |
+| Delete endpoint | `hf endpoints delete <name>` |
 | List discussions | `hf discussions ls <repo_id>` |
 | Create discussion | `hf discussions create <repo_id> --title "<title>"` |
 | Comment on discussion | `hf discussions comment <repo_id> <num> --body "<text>"` |
+| Close discussion | `hf discussions close <repo_id> <num>` |
+| Merge PR | `hf discussions merge <repo_id> <num>` |
 | Manage cache | `hf cache ls`, `hf cache rm <id>`, `hf cache prune` |
+| Delete bucket / files | `hf buckets delete <user>/<bucket>`, `hf buckets rm <user>/<bucket> <path>` |
 | Sync to bucket | `hf sync <local_path> hf://buckets/<user>/<bucket>` |
 | Print environment | `hf env` |
 
@@ -146,8 +151,9 @@ hf datasets info bigcode/the-stack
 **Example 3: Create a private model repo and upload weights**
 ```bash
 hf repos create my-fine-tuned-model --private
-hf upload username/my-fine-tuned-model ./output --commit-message "Add fine-tuned weights"
-hf repos tag create username/my-fine-tuned-model v1.0 -m "Initial release"
+# create returns <your-username>/my-fine-tuned-model — use that full ID below
+hf upload <username>/my-fine-tuned-model ./output --commit-message "Add fine-tuned weights"
+hf repos tag create <username>/my-fine-tuned-model v1.0 -m "Initial release"
 ```
 
 ### Further Reference
