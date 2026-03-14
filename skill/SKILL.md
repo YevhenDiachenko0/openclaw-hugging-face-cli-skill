@@ -35,14 +35,7 @@ Hugging Face (https://huggingface.co) is the leading platform for sharing and co
 - Deploying and managing Inference Endpoints
 - Inspecting or cleaning the local HF cache
 
-## When NOT to Use
-
-- Python `huggingface_hub` library calls (use Python directly)
-- Transformers, Diffusers, or other HF Python library APIs
-- Training or fine-tuning workflows (use training frameworks)
-- Git operations on locally cloned HF repos (use `git` directly)
-
-## 1. Installation
+## Installation
 
 Check if `hf` is available by running `hf version`.
 
@@ -60,7 +53,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://hf.co/cli/install.ps1 | iex"
 
 After installation, run `hf version` to verify. If the command is not found, tell the user to restart their terminal (the installer updates PATH in shell profile, which requires a new shell session to take effect) and try again.
 
-## 2. Authentication
+## Authentication
 
 A Hugging Face User Access Token is required. The token is provided via the `HF_TOKEN` environment variable.
 
@@ -76,7 +69,7 @@ If authentication fails or the token is missing, instruct the user to:
 hf auth whoami
 ```
 
-## 3. CLI Usage
+## CLI Usage
 
 ### Key Commands
 
@@ -169,7 +162,7 @@ hf <command> --help
 - **Full documentation:** https://huggingface.co/docs/huggingface_hub/guides/cli
 - **CLI reference:** https://huggingface.co/docs/huggingface_hub/package_reference/cli
 
-## 4. Safety Rules
+## Safety Rules
 
 - **Destructive commands require explicit user confirmation.** Before running any of the following, describe what will happen and ask the user to confirm:
   - `hf repos delete` — permanently deletes a repository
