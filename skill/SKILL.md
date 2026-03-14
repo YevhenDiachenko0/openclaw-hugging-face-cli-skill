@@ -5,7 +5,7 @@ user-invocable: true
 metadata:
   openclaw:
     emoji: "\U0001F917"
-    version: 1.0.0
+    version: 1.1.0
     homepage: https://huggingface.co
     primaryEnv: HF_TOKEN
     requires:
@@ -19,10 +19,36 @@ Hugging Face (https://huggingface.co) is the leading platform for sharing and co
 
 ## Installation
 
-Check if `hf` is available by running `hf version`. If not installed:
+Check if `hf` is available by running `hf version`. If not installed, choose one of the methods below.
+
+### Option 1: pip (Recommended)
 
 ```bash
+pip install -U "huggingface_hub[cli]"
+```
+
+### Option 2: Homebrew (macOS/Linux)
+
+```bash
+brew install hf
+```
+
+### Option 3: uvx (no install needed)
+
+Requires [uv](https://docs.astral.sh/uv/getting-started/installation/). Run commands directly:
+
+```bash
+uvx hf version
+```
+
+### Option 4: Standalone installer
+
+```bash
+# macOS/Linux
 curl -LsSf https://hf.co/cli/install.sh | bash
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://hf.co/cli/install.ps1 | iex"
 ```
 
 After installation, run `hf version` to verify. If the command is not found, run `source ~/.bashrc` (or `source ~/.zshrc` for zsh) to reload the PATH, then try again.

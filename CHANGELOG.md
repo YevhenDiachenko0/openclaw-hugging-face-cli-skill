@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 — 2026-03-14
+
+- Add alternative installation methods: pip (recommended), Homebrew, and uvx
+- Move standalone `curl | bash` installer to Option 4
+- Add Windows PowerShell installer
+
 ## 1.0.0 — 2026-03-14
 
 Initial release targeting `hf` CLI v1.7.1.
