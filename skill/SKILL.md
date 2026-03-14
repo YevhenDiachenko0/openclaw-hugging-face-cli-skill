@@ -141,12 +141,12 @@ hf <command> --help
 - **Destructive commands require explicit user confirmation.** Before running any of the following, describe what will happen and ask the user to confirm:
   - `hf repos delete` — permanently deletes a repository
   - `hf repos delete-files` — deletes files from a repository
-  - `hf cache rm` / `hf cache prune` — removes cached data from disk
   - `hf buckets delete` / `hf buckets rm` — deletes buckets or bucket files
   - `hf discussions close` / `hf discussions merge` — closes or merges PRs/discussions
   - `hf collections delete` — permanently deletes a collection
   - `hf endpoints delete` — permanently deletes an Inference Endpoint
   - `hf jobs cancel` — cancels a running compute job
   - Any command with `--delete` flag (e.g., sync with deletion)
+  - `hf cache rm` / `hf cache prune` — removes cached data from disk (re-downloadable, but may waste bandwidth)
 - Never expose or log the `HF_TOKEN` value. Do not include it in command output or commit it to files.
 - When uploading, warn the user if the target repo is public and the upload may contain sensitive data.
