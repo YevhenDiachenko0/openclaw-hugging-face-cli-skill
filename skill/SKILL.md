@@ -1,6 +1,6 @@
 ---
 name: hugging-face-cli
-description: "Manage Hugging Face Hub via hf CLI: repos, models, datasets, spaces, jobs, endpoints, papers, collections. Use when managing HF repos, searching models/datasets, uploading/downloading files, or running cloud jobs."
+description: "Manage Hugging Face Hub via hf CLI. Use when working with HF AI models, datasets, spaces, or repos."
 user-invocable: true
 metadata:
   openclaw:
@@ -15,19 +15,7 @@ metadata:
 
 # Hugging Face CLI
 
-Hugging Face (https://huggingface.co) is the leading platform for sharing and collaborating on machine learning models, datasets, and spaces. This skill enables interaction with the Hub through the official `hf` CLI.
-
-## When to Use
-
-- Managing repositories (create, delete, duplicate, upload, download)
-- Searching and inspecting models, datasets, spaces, or papers
-- Uploading/downloading files or entire repos
-- Syncing local directories with HF buckets
-- Running SQL queries on dataset parquet files
-- Managing discussions and pull requests on Hub repos
-- Running and monitoring cloud compute jobs
-- Deploying and managing Inference Endpoints
-- Inspecting or cleaning the local HF cache
+Hugging Face (https://huggingface.co) is the leading platform for sharing and collaborating on AI models, datasets, and spaces. This skill enables interaction with the Hub through the official `hf` CLI.
 
 ## Installation
 
