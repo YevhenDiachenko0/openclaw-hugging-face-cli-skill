@@ -1,0 +1,179 @@
+---
+name: hugging-face-cli
+description: "Hugging Face Hub via `hf` CLI: repos, models, datasets, spaces, upload/download, compute jobs, inference endpoints, papers, collections. Use when: managing HF repos, searching models/datasets, uploading/downloading files, syncing buckets, querying dataset parquet, running cloud jobs, deploying inference endpoints. NOT for: Python huggingface_hub library calls, Transformers/Diffusers APIs, or training workflows."
+user-invocable: true
+metadata:
+  openclaw:
+    emoji: "\U0001F917"
+    version: 1.0.0
+    homepage: https://huggingface.co
+    primaryEnv: HF_TOKEN
+    requires:
+      env: [HF_TOKEN]
+      bins: [hf]
+    install:
+      - id: brew
+        kind: brew
+        formula: hf
+        bins: [hf]
+        label: "Install Hugging Face CLI (brew)"
+---
+
+# Hugging Face CLI
+
+Hugging Face (https://huggingface.co) is the leading platform for sharing and collaborating on machine learning models, datasets, and spaces. This skill enables interaction with the Hub through the official `hf` CLI.
+
+## When to Use
+
+- Managing repositories (create, delete, duplicate, upload, download)
+- Searching and inspecting models, datasets, spaces, or papers
+- Uploading/downloading files or entire repos
+- Syncing local directories with HF buckets
+- Running SQL queries on dataset parquet files
+- Managing discussions and pull requests on Hub repos
+- Running and monitoring cloud compute jobs
+- Deploying and managing Inference Endpoints
+- Inspecting or cleaning the local HF cache
+
+## When NOT to Use
+
+- Python `huggingface_hub` library calls (use Python directly)
+- Transformers, Diffusers, or other HF Python library APIs
+- Training or fine-tuning workflows (use training frameworks)
+- Git operations on locally cloned HF repos (use `git` directly)
+
+## 1. Installation
+
+Check if `hf` is available by running `hf version`.
+
+If `hf` is NOT installed, install it using the standalone installer:
+
+- **macOS / Linux:**
+```bash
+curl -LsSf https://hf.co/cli/install.sh | bash
+```
+
+- **Windows (PowerShell):**
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://hf.co/cli/install.ps1 | iex"
+```
+
+After installation, run `hf version` to verify. If the command is not found, tell the user to restart their terminal (the installer updates PATH in shell profile, which requires a new shell session to take effect) and try again.
+
+## 2. Authentication
+
+A Hugging Face User Access Token is required. The token is provided via the `HF_TOKEN` environment variable.
+
+If authentication fails or the token is missing, instruct the user to:
+1. Go to https://huggingface.co/settings/tokens
+2. Create a new token — there are two permission levels:
+   - **Read** (safer): sufficient for searching, downloading models/datasets, listing repos, browsing papers, and most read-only operations. Choose this if you only need to explore and download.
+   - **Write** (less safe, broader access): required for creating/deleting repos, uploading files, managing discussions, deploying endpoints, and running jobs. Example 3 (create a repo and upload weights) requires a write token.
+3. Set it as an environment variable: `export HF_TOKEN="hf_..."` (add to shell profile for persistence)
+
+**Important:** Do NOT run `hf auth login` interactively — it requires terminal input. Instead, use the environment variable directly. The `hf` CLI automatically picks up `HF_TOKEN` from the environment for all commands. To verify authentication, run:
+```bash
+hf auth whoami
+```
+
+## 3. CLI Usage
+
+### Key Commands
+
+| Task | Command |
+|---|---|
+| Check current user | `hf auth whoami` |
+| Download files | `hf download <repo_id> [files...] [--local-dir <path>]` |
+| Download specific revision | `hf download <repo_id> --revision <branch\|tag\|commit>` |
+| Download with filters | `hf download <repo_id> --include "*.safetensors" --exclude "*.bin"` |
+| Upload files | `hf upload <repo_id> <local_path> [path_in_repo]` |
+| Upload as PR | `hf upload <repo_id> <local_path> [path_in_repo] --create-pr` |
+| Upload (private repo) | `hf upload <repo_id> <local_path> [path_in_repo] --private` |
+| Upload large folder | `hf upload-large-folder <repo_id> <local_path>` |
+| Create a repo | `hf repos create <name> [--repo-type model\|dataset\|space] [--private]` |
+| Delete a repo | `hf repos delete <repo_id>` |
+| Duplicate a repo | `hf repos duplicate <repo_id> [--type model\|dataset\|space]` |
+| Repo settings | `hf repos settings <repo_id> [--private\|--public]` |
+| Manage branches | `hf repos branch create\|delete <repo_id> <branch>` |
+| Manage tags | `hf repos tag create\|delete <repo_id> <tag>` |
+| List models | `hf models ls [--search <query>] [--sort downloads] [--limit N]` |
+| Model info | `hf models info <repo_id>` |
+| List datasets | `hf datasets ls [--search <query>]` |
+| Dataset info | `hf datasets info <repo_id>` |
+| Run SQL on data | `hf datasets sql "<SQL>"` |
+| List spaces | `hf spaces ls [--search <query>]` |
+| Space info | `hf spaces info <repo_id>` |
+| Space dev mode | `hf spaces dev-mode <repo_id>` |
+| List papers | `hf papers ls [--limit N]` |
+| List collections | `hf collections ls [--owner <user>] [--sort trending]` |
+| Create collection | `hf collections create "<title>"` |
+| Collection info | `hf collections info <collection_slug>` |
+| Add to collection | `hf collections add-item <collection_slug> <repo_id> <type>` |
+| Delete collection | `hf collections delete <collection_slug>` |
+| Run a cloud job | `hf jobs run <docker_image> <command>` |
+| List jobs | `hf jobs ps` |
+| Job logs | `hf jobs logs <job_id>` |
+| Cancel a job | `hf jobs cancel <job_id>` |
+| Job hardware | `hf jobs hardware` |
+| Deploy endpoint | `hf endpoints deploy <name> --repo <repo_id> --framework <fw> --accelerator <hw> ...` |
+| List endpoints | `hf endpoints ls` |
+| Endpoint info | `hf endpoints describe <name>` |
+| Pause/resume endpoint | `hf endpoints pause\|resume <name>` |
+| List discussions | `hf discussions ls <repo_id>` |
+| Create discussion | `hf discussions create <repo_id> --title "<title>"` |
+| Comment on discussion | `hf discussions comment <repo_id> <num> --body "<text>"` |
+| Manage cache | `hf cache ls`, `hf cache rm <id>`, `hf cache prune` |
+| Sync to bucket | `hf sync <local_path> hf://buckets/<user>/<bucket>` |
+| Print environment | `hf env` |
+
+### End-to-End Examples
+
+**Example 1: Explore trending models, pick one, and preview a download**
+```bash
+hf models ls --sort trending_score --limit 5
+hf models info openai-community/gpt2
+hf download --dry-run openai-community/gpt2 config.json tokenizer.json
+hf download openai-community/gpt2 config.json tokenizer.json --local-dir ./gpt2
+```
+
+**Example 2: Browse today's papers and find related datasets**
+```bash
+hf papers ls --limit 5
+hf datasets ls --search "code" --sort downloads --limit 5
+hf datasets info bigcode/the-stack
+```
+
+**Example 3: Create a private model repo and upload weights**
+```bash
+hf repos create my-fine-tuned-model --private
+hf upload username/my-fine-tuned-model ./output --commit-message "Add fine-tuned weights"
+hf repos tag create username/my-fine-tuned-model v1.0 -m "Initial release"
+```
+
+### Further Reference
+
+Reference version: `hf` CLI v1.x
+
+For the full list of commands and options, use built-in help:
+```bash
+hf --help
+hf <command> --help
+```
+
+- **Full documentation:** https://huggingface.co/docs/huggingface_hub/guides/cli
+- **CLI reference:** https://huggingface.co/docs/huggingface_hub/package_reference/cli
+
+## 4. Safety Rules
+
+- **Destructive commands require explicit user confirmation.** Before running any of the following, describe what will happen and ask the user to confirm:
+  - `hf repos delete` — permanently deletes a repository
+  - `hf repos delete-files` — deletes files from a repository
+  - `hf cache rm` / `hf cache prune` — removes cached data from disk
+  - `hf buckets delete` / `hf buckets rm` — deletes buckets or bucket files
+  - `hf discussions close` / `hf discussions merge` — closes or merges PRs/discussions
+  - `hf collections delete` — permanently deletes a collection
+  - `hf endpoints delete` — permanently deletes an Inference Endpoint
+  - `hf jobs cancel` — cancels a running compute job
+  - Any command with `--delete` flag (e.g., sync with deletion)
+- Never expose or log the `HF_TOKEN` value. Do not include it in command output or commit it to files.
+- When uploading, warn the user if the target repo is public and the upload may contain sensitive data.
