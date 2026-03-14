@@ -19,26 +19,12 @@ Hugging Face (https://huggingface.co) is the leading platform for sharing and co
 
 ## Installation
 
-Check if `hf` is available by running `hf version`. If not installed, choose one of the methods below.
-
-### Option 1: pip (Recommended)
+Check if `hf` is available by running `hf version`. If not installed:
 
 ```bash
 pip install -U "huggingface_hub[cli]"
-```
-
-### Option 2: Homebrew (macOS/Linux)
-
-```bash
+# or
 brew install hf
-```
-
-### Option 3: uvx (no install needed)
-
-Requires [uv](https://docs.astral.sh/uv/getting-started/installation/). Run commands directly:
-
-```bash
-uvx hf version
 ```
 
 If the options above do not work, follow the [official installation guide](https://huggingface.co/docs/huggingface_hub/guides/cli#getting-started).
@@ -61,9 +47,7 @@ If authentication fails or the token is missing, instruct the user to:
 hf auth whoami
 ```
 
-## CLI Usage
-
-### Key Commands
+## Key Commands
 
 | Task | Command |
 |---|---|
@@ -116,7 +100,7 @@ hf auth whoami
 | Sync to bucket | `hf sync <local_path> hf://buckets/<user>/<bucket>` |
 | Print environment | `hf env` |
 
-### End-to-End Examples
+## End-to-End Examples
 
 **Example 1: Explore trending models, pick one, and preview a download**
 ```bash
@@ -141,7 +125,7 @@ hf upload <username>/my-fine-tuned-model ./output --commit-message "Add fine-tun
 hf repos tag create <username>/my-fine-tuned-model v1.0 -m "Initial release"
 ```
 
-### Further Reference
+## Further Reference
 
 Reference version: `hf` CLI v1.x
 
