@@ -8,5 +8,5 @@ Install via:
 clawhub install hugging-face-cli
 ```
 
-More details: https://clawhub.ai/skills/hugging-face-cli
+More details: https://clawhub.ai/YevhenDiachenko0/hugging-face-cli
 
