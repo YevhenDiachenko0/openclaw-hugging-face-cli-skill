@@ -127,7 +127,7 @@ hf auth whoami
 | Close discussion | `hf discussions close <repo_id> <num>` |
 | Merge PR | `hf discussions merge <repo_id> <num>` |
 | Manage cache | `hf cache ls`, `hf cache rm <id>`, `hf cache prune` |
-| Delete bucket / files | `hf buckets delete <user>/<bucket>`, `hf buckets rm <user>/<bucket> <path>` |
+| Delete bucket / files | `hf buckets delete <user>/<bucket>`, `hf buckets rm <user>/<bucket>/<path>` |
 | Sync to bucket | `hf sync <local_path> hf://buckets/<user>/<bucket>` |
 | Print environment | `hf env` |
 
