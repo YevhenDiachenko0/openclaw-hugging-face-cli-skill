@@ -1,6 +1,6 @@
 ---
 name: hugging-face-cli
-description: "Hugging Face Hub via `hf` CLI: repos, models, datasets, spaces, upload/download, compute jobs, inference endpoints, papers, collections. Use when: managing HF repos, searching models/datasets, uploading/downloading files, syncing buckets, querying dataset parquet, running cloud jobs, deploying inference endpoints. NOT for: Python huggingface_hub library calls, Transformers/Diffusers APIs, or training workflows."
+description: "Manage Hugging Face Hub via hf CLI: repos, models, datasets, spaces, jobs, endpoints, papers, collections. Use when managing HF repos, searching models/datasets, uploading/downloading files, or running cloud jobs."
 user-invocable: true
 metadata:
   openclaw:
